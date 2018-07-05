@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Chess</title>
+	<link rel="stylesheet" type="text/css" href="custom.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+	<div id="chess-main">
+	  	
+	  	<!--======================= INITIAL PAGE START =======================-->
+		<section id="intial-page">
+			
+		</section>
+		<!--======================= INITIAL PAGE END =========================-->
+
+		<!--======================= PLAYING PAGE START =======================-->
+		<section id="playing-page">
+			<div class="chess-left-box">
+				<p class="text-center">
+					<h2></h2>
+				</p>
+			</div>
+			<div class="chess-wrapper">
+				<!--ro2-->
+				<div class="row" v-for="(row, rindex) in rows" :ref="'row'+rindex">
+					<div class="column" v-for="(column, index) in columns" :ref="'row'+rindex+'column'+index" @click="showAvailables(rindex, index)">{{getSymbol(rindex, index)}}</div>
+				</div>
+			</div>	
+
+		</section>
+		<!--======================= PLAYING PAGE END =========================-->
+
+		<!--======================= RESULT PAGE START =======================-->
+		<section id="result-page">
+			
+		</section>
+		<!--======================= RESULT PAGE END =========================-->
+
+	</div>
+
+	<script>
+		var app = new Vue({
+		  el: '#chess-main',
+		  data: {
+		  	rows: [1, 2, 3, 4, 5, 6, 7, 8],
+		  	columns: [1, 2, 3, 4, 5, 6, 7, 8],
+		  	pieces: [
+		  		//player 1
+		   		{"symbol": "1-K", "currentPosition": "04", "isDead": false, "isSelected": false }, //king
+		   		{"symbol": "1-Q", "currentPosition": "03", "isDead": false, "isSelected": false }, //queen 
+
+		   		{"symbol": "1-P1", "currentPosition": "10", "isDead": false, "isSelected": false }, //pawn1
+		   		{"symbol": "1-P2", "currentPosition": "11", "isDead": false, "isSelected": false }, //pawn2
+		   		{"symbol": "1-P3", "currentPosition": "12", "isDead": false, "isSelected": false }, //pawn3
+		   		{"symbol": "1-P4", "currentPosition": "13", "isDead": false, "isSelected": false }, //pawn4
+		   		{"symbol": "1-P5", "currentPosition": "14", "isDead": false, "isSelected": false }, //pawn5
+		   		{"symbol": "1-P6", "currentPosition": "15", "isDead": false, "isSelected": false }, //pawn6
+		   		{"symbol": "1-P7", "currentPosition": "16", "isDead": false, "isSelected": false }, //pawn7
+		   		{"symbol": "1-P8", "currentPosition": "17", "isDead": false, "isSelected": false }, //pawn8
+
+		   		{"symbol": "1-R1", "currentPosition": "00", "isDead": false, "isSelected": false }, //rook1
+		   		{"symbol": "1-R2", "currentPosition": "07", "isDead": false, "isSelected": false }, //rook2
+
+		   		{"symbol": "1-B1", "currentPosition": "02", "isDead": false, "isSelected": false }, //bishop1
+		   		{"symbol": "1-B2", "currentPosition": "05", "isDead": false, "isSelected": false }, //bishop2
+
+		   		{"symbol": "1-H1", "currentPosition": "01", "isDead": false, "isSelected": false }, //knight1
+		   		{"symbol": "1-H2", "currentPosition": "06", "isDead": false, "isSelected": false }, //knight2
+
+
+		   		//player 2
+		   		{"symbol": "2-K", "currentPosition": "74", "isDead": false, "isSelected": false }, //king
+		   		{"symbol": "2-Q", "currentPosition": "73", "isDead": false, "isSelected": false }, //queen 
+
+		   		{"symbol": "2-P1", "currentPosition": "60", "isDead": false, "isSelected": false }, //pawn1
+		   		{"symbol": "2-P2", "currentPosition": "61", "isDead": false, "isSelected": false }, //pawn2
+		   		{"symbol": "2-P3", "currentPosition": "62", "isDead": false, "isSelected": false }, //pawn3
+		   		{"symbol": "2-P4", "currentPosition": "63", "isDead": false, "isSelected": false }, //pawn4
+		   		{"symbol": "2-P5", "currentPosition": "64", "isDead": false, "isSelected": false }, //pawn5
+		   		{"symbol": "1-P6", "currentPosition": "65", "isDead": false, "isSelected": false }, //pawn6
+		   		{"symbol": "2-P7", "currentPosition": "66", "isDead": false, "isSelected": false }, //pawn7
+		   		{"symbol": "2-P8", "currentPosition": "67", "isDead": false, "isSelected": false }, //pawn8
+
+		   		{"symbol": "2-R1", "currentPosition": "70", "isDead": false, "isSelected": false }, //rook1
+		   		{"symbol": "2-R2", "currentPosition": "77", "isDead": false, "isSelected": false }, //rook2
+
+		   		{"symbol": "2-B1", "currentPosition": "72", "isDead": false, "isSelected": false }, //bishop1
+		   		{"symbol": "2-B2", "currentPosition": "75", "isDead": false, "isSelected": false }, //bishop2
+
+		   		{"symbol": "2-H1", "currentPosition": "71", "isDead": false, "isSelected": false }, //knight1
+		   		{"symbol": "2-H2", "currentPosition": "76", "isDead": false, "isSelected": false }, //knight2
+
+		   	],
+		  	playerOne: {
+		  		type: "1", // 1 = black, 2 = white
+		  		isActive: false
+		  	},
+		  	playerTwo: {},
+		  	selectedPlayer: {},
+		  	availableToMove: []
+		  },
+		  mounted: function(){
+		  	let el = this.$refs.row1column2;
+		  	el.innerHTML = "K";
+		  	console.log(el)
+		  },
+		  methods: {
+		  	getSymbol(rindex, index){
+		  		let finalIndex = `${rindex}`+`${index}`;
+		  		let pieces = this.pieces;
+		  		let item = pieces.filter(function(obj){
+		  			return obj.currentPosition == finalIndex;
+		  		});
+		  		return item[0] ? item[0].symbol : '';
+		  	},
+		  	showAvailables(rindex, index){}
+		  }
+		})
+	</script>
+</body>
+</html>
