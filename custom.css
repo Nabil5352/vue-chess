@@ -2,8 +2,7 @@
 * GENERAL
 */
 .text-center {
-  text-align: center;
-}
+  text-align: center; }
 
 /*
 * INITIAL PAGE
@@ -15,26 +14,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-#playing-page .chess-wrapper .row {
-  height: 82px;
-}
-#playing-page .chess-wrapper .row .column {
-  cursor: pointer;
-  float: left;
-  width: 80px;
-  height: 80px;
-  border: 1px solid #ddd;
-  font-size: 1.5rem;
-  text-align: center;
-}
-#playing-page .chess-wrapper .row:nth-child(odd) .column:nth-child(even) {
-  background-color: grey;
-}
-#playing-page .chess-wrapper .row:nth-child(even) .column:nth-child(odd) {
-  background-color: grey;
-}
+  flex-direction: column; }
+  #playing-page .chess-wrapper .row {
+    height: 82px; }
+    #playing-page .chess-wrapper .row .column {
+      cursor: pointer;
+      float: left;
+      width: 80px;
+      height: 80px;
+      border: 1px solid #ddd;
+      font-size: 1.5rem;
+      text-align: center; }
+      #playing-page .chess-wrapper .row .column.active {
+        border: 2px solid #000; }
+    #playing-page .chess-wrapper .row:nth-child(odd) .column:nth-child(even) {
+      background-color: grey; }
+    #playing-page .chess-wrapper .row:nth-child(even) .column:nth-child(odd) {
+      background-color: grey; }
 
 /*
 * RESULT PAGE
